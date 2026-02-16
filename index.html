@@ -1,0 +1,781 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TopHabits - Master Your Habits. Rule Your Day.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+      :root {
+        --bg: #161629;
+        --card-bg: #2d2d38;
+        --accent: #7bcd43;
+        --accent-secondary: #ffd60a;
+        --text-main: #ffffff;
+        --text-dim: #8d92c3;
+        --gradient: linear-gradient(135deg, #7bcd43 0%, #3a7bd5 100%);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Outfit", sans-serif;
+      }
+
+      body {
+        background-color: var(--bg);
+        color: var(--text-main);
+        line-height: 1.6;
+        overflow-x: hidden;
+        display: grid;
+      }
+
+      .container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+
+      header {
+        padding: 60px 0 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 32px;
+        font-weight: 700;
+        margin-bottom: 20px;
+        letter-spacing: -0.5px;
+        color: var(--text-main);
+        gap: 12px;
+        text-decoration: none;
+      }
+
+      .logo img {
+        height: 48px;
+        width: 48px;
+        border-radius: 12px;
+      }
+
+      .premium .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        max-width: 800px;
+        margin: 0 auto; /* Ensure centering */
+      }
+
+      .hero {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 40px 0 80px;
+      }
+
+      .hero-title {
+        font-size: 56px;
+        font-weight: 700;
+        line-height: 1.1;
+        margin: 0 auto 24px auto;
+        max-width: 800px;
+      }
+
+      .hero-subtitle {
+        font-size: 20px;
+        color: var(--text-dim);
+        max-width: 650px;
+        margin: 0 auto 40px auto;
+        text-align: center;
+      }
+
+      .hero-actions {
+        display: flex;
+        gap: 16px;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin: 0 auto;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 16px 32px;
+        background: var(--accent);
+        color: #161629;
+        text-decoration: none;
+        border-radius: 100px;
+        font-weight: 600;
+        font-size: 18px;
+        transition:
+          transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+          box-shadow 0.2s;
+        box-shadow: 0 10px 20px rgba(123, 205, 67, 0.2);
+        border: none;
+        cursor: pointer;
+      }
+
+      .btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 15px 30px rgba(123, 205, 67, 0.3);
+      }
+
+      .btn-outline {
+        background: transparent;
+        border: 2px solid rgba(255, 255, 255, 0.1);
+        color: var(--text-main);
+        box-shadow: none;
+      }
+
+      .btn-outline:hover {
+        background: rgba(255, 255, 255, 0.05);
+        border-color: rgba(255, 255, 255, 0.2);
+      }
+
+      .screenshots-wrapper {
+        margin-top: 60px;
+        width: 100vw;
+        margin-left: 50%;
+        transform: translateX(-50%);
+        position: relative;
+      }
+
+      .screenshots-scroll {
+        display: flex;
+        gap: 0;
+        padding: 40px 0;
+        overflow-x: auto;
+        scroll-behavior: smooth;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+        scroll-snap-type: x mandatory;
+      }
+
+      .screenshots-scroll::-webkit-scrollbar {
+        display: none;
+      }
+
+      .screenshot {
+        min-width: 20vw; /* Ensure it doesn't shrink below this targeting 5 items */
+        flex: 0 0 20vw;
+        max-width: none;
+        border-radius: 0;
+        box-shadow: none;
+        transition: transform 0.3s;
+        height: auto;
+        display: block;
+        padding: 0 4px; /* Reduced gap slightly for tighter fit */
+        scroll-snap-align: start;
+        box-sizing: border-box; /* Important so padding doesn't add width */
+      }
+
+      /* Scroll Buttons */
+      .slider-nav {
+        display: flex;
+        justify-content: center;
+        gap: 16px;
+        margin: 0 auto 20px auto;
+        max-width: 1100px;
+        padding: 0 24px;
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      .scroll-btn {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: var(--accent);
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        z-index: 10;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+        opacity: 0.5;
+        pointer-events: none;
+      }
+
+      .scroll-btn.visible {
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .scroll-btn:hover {
+        background: var(--accent);
+        color: #161629;
+        transform: scale(1.1);
+        box-shadow: 0 8px 20px rgba(123, 205, 67, 0.4);
+      }
+
+      /* Remove old animations as they dont make sense for static buttons */
+      .scroll-btn.right.visible,
+      .scroll-btn.left.visible {
+        animation: none;
+      }
+
+      .screenshot img {
+        width: 100%;
+        border-radius: 32px;
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+        display: block;
+      }
+
+      .screenshot:hover {
+        transform: translateY(-10px);
+      }
+
+      .features {
+        padding: 0 0 100px;
+      }
+
+      .section-header {
+        text-align: center;
+        margin-bottom: 60px;
+      }
+
+      .section-header h2 {
+        font-size: 40px;
+        margin-bottom: 16px;
+      }
+
+      .section-header p {
+        color: var(--text-dim);
+        font-size: 18px;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 32px;
+      }
+
+      .feature-card {
+        background: var(--card-bg);
+        padding: 40px;
+        border-radius: 24px;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        transition:
+          border-color 0.3s,
+          transform 0.3s;
+        text-align: center;
+      }
+
+      .feature-card:hover {
+        border-color: var(--accent);
+        transform: translateY(-5px);
+      }
+
+      .feature-icon {
+        font-size: 32px;
+        margin-bottom: 24px;
+        color: var(--accent);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .feature-card h3 {
+        font-size: 24px;
+        margin-bottom: 12px;
+      }
+
+      .feature-card p {
+        color: var(--text-dim);
+      }
+
+      .premium {
+        background: linear-gradient(
+          180deg,
+          rgba(123, 205, 67, 0.1) 0%,
+          transparent 100%
+        );
+        padding: 100px 0;
+        border-radius: 60px 60px 0 0;
+      }
+
+      .premium-card {
+        background: var(--card-bg);
+        border-radius: 40px;
+        padding: 60px;
+        text-align: center;
+        max-width: 800px;
+        margin: 0 auto;
+        border: 1px solid rgba(123, 205, 67, 0.3);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .premium-card::after {
+        content: "";
+        position: absolute;
+        top: -50%;
+        right: -50%;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(
+          circle,
+          rgba(123, 205, 67, 0.1) 0%,
+          transparent 70%
+        );
+        z-index: 0;
+      }
+
+      .premium-list {
+        list-style: none;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        text-align: left;
+        margin: 40px 0;
+        position: relative;
+        z-index: 1;
+      }
+
+      .premium-list li {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        color: var(--text-main);
+        font-size: 16px;
+      }
+
+      .check-icon {
+        color: var(--accent);
+        width: 20px;
+        height: 20px;
+        stroke-width: 3px;
+        flex-shrink: 0;
+      }
+
+      footer {
+        padding: 80px 0 40px;
+        text-align: center;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+      }
+
+      .footer-links {
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 15px;
+      }
+
+      .footer-links a {
+        color: var(--text-dim);
+        text-decoration: none;
+        font-size: 14px;
+        transition: color 0.2s;
+      }
+
+      .footer-links a:hover {
+        color: var(--text-main);
+      }
+
+      .copyright {
+        color: rgba(255, 255, 255, 0.3);
+        font-size: 12px;
+      }
+
+      @media (max-width: 768px) {
+        .container {
+          width: 100%;
+          padding: 0 24px;
+        }
+        .hero-title {
+          font-size: 40px;
+        }
+        .features-grid {
+          grid-template-columns: 1fr;
+        }
+        .premium-list {
+          grid-template-columns: 1fr;
+        }
+        .hero-actions {
+          flex-direction: column;
+          width: 100%;
+        }
+        .btn,
+        .btn-outline {
+          width: 100%;
+        }
+        .screenshot {
+          min-width: 50vw;
+          flex: 0 0 50vw;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <img src="public/assets/logo.png" alt="Logo" />
+        TopHabits
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="container">
+        <h1 class="hero-title">Master Your Habits. Rule Your Day.</h1>
+        <p class="hero-subtitle">
+          TopHabits is your personal dashboard for growth. Designed with a
+          premium aesthetic and powerful functionality to help you focus on the
+          goals that move the needle.
+        </p>
+        <div class="hero-actions">
+          <a href="#" class="btn">View on App Store</a>
+          <a href="support.html" class="btn btn-outline">Need Help?</a>
+        </div>
+
+        <div class="screenshots-wrapper">
+          <div class="slider-nav">
+            <button class="scroll-btn left" aria-label="Scroll left">
+              <i data-lucide="chevron-left"></i>
+            </button>
+            <button class="scroll-btn right" aria-label="Scroll right">
+              <i data-lucide="chevron-right"></i>
+            </button>
+          </div>
+          <div class="screenshots-scroll">
+            <!-- Assuming images are in public/assets/screens. Update path if necessary for local dev (e.g. just assets/screens if served from public root) -->
+            <img
+              src="public/assets/screens/Screensot (6.5 inch) 1.png"
+              alt="TopHabits Dashboard"
+              class="screenshot"
+            />
+            <img
+              src="public/assets/screens/Screensot (6.5 inch) 2.png"
+              alt="TopHabits Stats"
+              class="screenshot"
+            />
+            <img
+              src="public/assets/screens/Screensot (6.5 inch) 3.png"
+              alt="TopHabits Calendar"
+              class="screenshot"
+            />
+            <img
+              src="public/assets/screens/Screensot (6.5 inch) 4.png"
+              alt="TopHabits Settings"
+              class="screenshot"
+            />
+            <img
+              src="public/assets/screens/Screensot (6.5 inch) 5.png"
+              alt="TopHabits Features"
+              class="screenshot"
+            />
+            <img
+              src="public/assets/screens/Screensot (6.5 inch) 6.png"
+              alt="TopHabits Features Breakdown"
+              class="screenshot"
+            />
+            <img
+              src="public/assets/screens/Screensot (6.5 inch) 7.png"
+              alt="TopHabits Premium"
+              class="screenshot"
+            />
+            <img
+              src="public/assets/screens/Screensot (6.5 inch) 8.png"
+              alt="TopHabits Widgets"
+              class="screenshot"
+            />
+            <img
+              src="public/assets/screens/Screensot (6.5 inch) 9.png"
+              alt="TopHabits Dark Mode"
+              class="screenshot"
+            />
+            <img
+              src="public/assets/screens/Screensot (6.5 inch) 10.png"
+              alt="TopHabits Goal Creation"
+              class="screenshot"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="features">
+      <div class="container">
+        <div class="section-header">
+          <h2>Why TopHabits?</h2>
+          <p>
+            Most habit trackers overwhelm you with data. TopHabits empowers you
+            with focus.
+          </p>
+        </div>
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i data-lucide="pin"></i>
+            </div>
+            <h3>Pin Your Top 3</h3>
+            <p>
+              Maximum focus on your most critical goals until they become second
+              nature.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i data-lucide="layout"></i>
+            </div>
+            <h3>Beautiful Widgets</h3>
+            <p>
+              Track momentum and upcoming reminders directly from your Home
+              Screen.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i data-lucide="bar-chart-2"></i>
+            </div>
+            <h3>Advanced Analytics</h3>
+            <p>
+              Visualize success rates and trends with professional-grade charts.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i data-lucide="zap"></i>
+            </div>
+            <h3>Streak Tracking</h3>
+            <p>
+              Build consistency and watch your momentum grow with our dynamic
+              system.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i data-lucide="bell"></i>
+            </div>
+            <h3>Smart Reminders</h3>
+            <p>
+              Customizable notifications tailored to your schedule to keep you
+              on course.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i data-lucide="cloud"></i>
+            </div>
+            <h3>Cloud Secure</h3>
+            <p>
+              Automatic, secure backups to Google Drive ensure you never lose
+              progress.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      // Initialize Icons
+      lucide.createIcons();
+
+      // Carousel Logic
+      const scrollContainer = document.querySelector(".screenshots-scroll");
+      const leftBtn = document.querySelector(".scroll-btn.left");
+      const rightBtn = document.querySelector(".scroll-btn.right");
+
+      function updateButtons() {
+        if (!scrollContainer) return;
+
+        const { scrollLeft, scrollWidth, clientWidth } = scrollContainer;
+        // Tolerance for floating point values
+        const isAtStart = scrollLeft <= 10;
+        const isAtEnd = scrollLeft + clientWidth >= scrollWidth - 10;
+
+        if (leftBtn) leftBtn.classList.toggle("visible", !isAtStart);
+        if (rightBtn) rightBtn.classList.toggle("visible", !isAtEnd);
+      }
+
+      function scrollCarousel(direction) {
+        if (!scrollContainer) return;
+
+        // Get single card width
+        const cards = scrollContainer.querySelectorAll(".screenshot");
+        if (cards.length === 0) return;
+
+        const cardWidth = cards[0].offsetWidth;
+        // Scroll 2 cards
+        const scrollAmount = cardWidth * 2;
+
+        scrollContainer.scrollBy({
+          left: direction === "right" ? scrollAmount : -scrollAmount,
+          behavior: "smooth",
+        });
+      }
+
+      if (leftBtn) {
+        leftBtn.addEventListener("click", () => scrollCarousel("left"));
+      }
+
+      if (rightBtn) {
+        rightBtn.addEventListener("click", () => scrollCarousel("right"));
+      }
+
+      if (scrollContainer) {
+        scrollContainer.addEventListener("scroll", updateButtons);
+        // Initial check
+        updateButtons();
+
+        // Update on resize
+        window.addEventListener("resize", updateButtons);
+
+        // Update after images load to ensure correct scrollWidth
+        window.addEventListener("load", updateButtons);
+      }
+    </script>
+
+    <section class="premium">
+      <div class="container">
+        <div class="premium-card">
+          <h2>Go Premium</h2>
+          <p>Unlock the full power of TopHabits and accelerate your growth.</p>
+          <ul class="premium-list">
+            <li>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="check-icon lucide lucide-check-circle"
+              >
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                <path d="M22 4 12 14.01l-3-3" />
+              </svg>
+              Unlimited Goals & Reminders
+            </li>
+            <li>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="check-icon lucide lucide-check-circle"
+              >
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                <path d="M22 4 12 14.01l-3-3" />
+              </svg>
+              Advanced Analytics & Trends
+            </li>
+            <li>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="check-icon lucide lucide-check-circle"
+              >
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                <path d="M22 4 12 14.01l-3-3" />
+              </svg>
+              Pin Your Top 3 Critical Goals
+            </li>
+            <li>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="check-icon lucide lucide-check-circle"
+              >
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                <path d="M22 4 12 14.01l-3-3" />
+              </svg>
+              Automatic Cloud Backups
+            </li>
+            <li>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="check-icon lucide lucide-check-circle"
+              >
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                <path d="M22 4 12 14.01l-3-3" />
+              </svg>
+              History & Deep Insights
+            </li>
+            <li>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="check-icon lucide lucide-check-circle"
+              >
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                <path d="M22 4 12 14.01l-3-3" />
+              </svg>
+              Premium Home Widgets
+            </li>
+          </ul>
+          <a href="#" class="btn">Get Started Today</a>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container">
+        <div class="footer-links">
+          <a href="support.html">Support</a>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="mailto:laza.88.lazarevic@gmail.com">Contact</a>
+        </div>
+        <p class="copyright">&copy; 2026 TopHabits. All rights reserved.</p>
+      </div>
+    </footer>
+  </body>
+</html>

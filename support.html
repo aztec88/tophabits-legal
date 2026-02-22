@@ -142,9 +142,33 @@
       }
 
       footer {
-        padding: 60px 0;
+        padding: 80px 0 40px;
         text-align: center;
         border-top: 1px solid rgba(255, 255, 255, 0.05);
+      }
+
+      .footer-links {
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 15px;
+      }
+
+      .footer-links a {
+        color: var(--text-dim);
+        text-decoration: none;
+        font-size: 14px;
+        transition: color 0.2s;
+      }
+
+      .footer-links a:hover {
+        color: var(--text-main);
+      }
+
+      .copyright {
+        color: rgba(255, 255, 255, 0.3);
+        font-size: 12px;
       }
 
       .back-link {
@@ -220,10 +244,13 @@
 
       <footer>
         <div class="container">
-          <p>
-            &copy; 2026 TopHabits. For all inquiries, contact
-            laza.88.lazarevic@gmail.com
-          </p>
+          <div class="footer-links">
+            <a href="support.html">Support</a>
+            <a href="https://aztec88.github.io/tophabits-legal/privacy">Privacy Policy</a>
+            <a href="https://aztec88.github.io/tophabits-legal/terms">Terms of Service</a>
+            <a href="mailto:laza.88.lazarevic@gmail.com">Contact</a>
+          </div>
+          <p class="copyright">&copy; 2026 TopHabits. All rights reserved.</p>
         </div>
       </footer>
     </div>
